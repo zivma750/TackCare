@@ -1,0 +1,213 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Drugs Page</h1>
+    <div class="floating-container">
+        <a class="floating-button" href="{{ url_for('add_drug')}}"> +</a>
+    </div>
+    {% if drugs.count() == 0  %}
+        <h3>No drug alerts found</h3>
+    {% else %}
+        <h3>Active Drug treatment</h3>
+        <br>
+        {% for drug in drugs %}
+             {% if not drug.finish %}
+                {% set counter = namespace(count=0) %}
+                {% set totalcounter = namespace(count=0) %}
+                {% for reminder in drug_schedule %}
+                    {% if reminder.drug_id == drug.id %}
+                        {% set totalcounter.count = totalcounter.count + 1 %}
+                        {% if reminder.took == 1 %}
+                            {% set counter.count = counter.count + 1 %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Calculate the percentage -->
+                {% if totalcounter.count > 0 %}
+                    {% set percentage = (counter.count / totalcounter.count * 100) | round %}
+                {% else %}
+                    {% set percentage = 0 %}
+                {% endif %}
+    <!--            &lt;!&ndash; Calculate the dates to add reminder &ndash;&gt;-->
+    <!--            {{ totalcounter.count }}-->
+    <!--            {% set totalpill = drug.dose * drug.timesaday %} &nbsp;-->
+    <!--            {% set gapp =  drug.packsize / totalpill | int %}-->
+    <!--            {{ gapp | int }}-->
+
+                <article class="media content-section">
+                    <div class="media-body ">
+                        <span class="badge badge-pill badge-info">Active</span>
+                        <div class="article-title">
+
+                            <big><strong>User: </strong> {{ eldelys_dict[drug.elderly_user_id] }}</big>
+                        </div>
+                        <div class="article-metadata">
+                            <big class="text-muted"><strong>Start Date: </strong> {{ drug.startdate.strftime('%d-%m-%y') }} </big>
+
+                        </div>
+                        <h2>{{ drug.name }}</h2>
+                        {% if drug.warnings != "" %}
+                            <p>
+                             <button class="btn btn-secondary btn-sm" data-toggle="collapse" href="#collapseExample{{drug.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{drug.id}}">
+                                FDA Warnings
+                             </button>
+                            </p>
+                            <div class="collapse" id="collapseExample{{drug.id}}" >
+                              <div class="card card-body scroll">
+                                {{drug.warnings}}
+                              </div>
+                            </div>
+                        {% endif %}
+
+                        <p class="article-content"></p>
+
+                            <strong>Type: </strong> {{ drug.type }}&nbsp; &nbsp; &nbsp; &nbsp;
+                            <strong>Start date:</strong> {{ drug.startdate.strftime('%d-%m-%y') }} &nbsp; &nbsp; &nbsp; &nbsp;
+                            <strong>Pack size:</strong> {{ drug.packsize }} &nbsp; &nbsp; &nbsp; &nbsp;
+                            <strong> Dose: </strong>{{ drug.dose }} &nbsp; &nbsp; &nbsp; &nbsp;
+                            <strong>Times a day: </strong>{{ drug.timesaday }}
+
+
+                        </p>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">{{ percentage }}%</div>
+    <!--                         <div style="width: 6px; height: 20px; position: absolute; background: red; right: 40%;" title="Nadav">-->
+    <!--                        </div>-->
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-danger btn-sm ml-1" data-toggle="modal" data-target="#deleteModal{{drug.id}}">
+                            Delete
+                        </button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal{{drug.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModal{{drug.id}}Label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModal{{drug.id}}Label">Are you sure?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this drug?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <form action="{{ url_for('delete_drug', drug_id=drug.id ) }}" method="POST">
+                                        <input class="btn btn-primary btn-danger" type="submit" value="Delete">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            {% endif %}
+        {% endfor %}
+        <br>
+        <hr class="hr" />
+        <br>
+        <h3>Drug treatment that has ended</h3>
+        <p>
+            <br>
+          <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Show all</a>
+        </p>
+
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+
+
+        {% for drug in drugs %}
+            {% if drug.finish %}
+                {% set counter = namespace(count=0) %}
+                {% set totalcounter = namespace(count=0) %}
+                {% for reminder in drug_schedule %}
+                    {% if reminder.drug_id == drug.id %}
+                        {% set totalcounter.count = totalcounter.count + 1 %}
+                        {% if reminder.took == 1 %}
+                            {% set counter.count = counter.count + 1 %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Calculate the percentage -->
+                {% if totalcounter.count > 0 %}
+                    {% set percentage = (counter.count / totalcounter.count * 100) | round %}
+                {% else %}
+                    {% set percentage = 0 %}
+                {% endif %}
+    <!--            &lt;!&ndash; Calculate the dates to add reminder &ndash;&gt;-->
+    <!--            {{ totalcounter.count }}-->
+    <!--            {% set totalpill = drug.dose * drug.timesaday %} &nbsp;-->
+    <!--            {% set gapp =  drug.packsize / totalpill | int %}-->
+    <!--            {{ gapp | int }}-->
+
+                <article class="media content-section">
+                    <div class="media-body">
+                        <span class="badge badge-pill badge-success">Done</span>
+                        <div class="article-title">
+                            <big><strong>User: </strong> {{ eldelys_dict[drug.elderly_user_id] }}  </big>
+                        </div>
+                        <div class="article-metadata">
+                            <big class="text-muted"><strong>Start Date: </strong>  {{ drug.startdate.strftime('%d-%m-%y') }} </big>
+                        </div>
+                        <h2>{{ drug.name }}</h2>
+                        {% if drug.warnings != "" %}
+                            <p>
+                             <button class="btn btn-secondary btn-sm" data-toggle="collapse" href="#collapseExample{{drug.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{drug.id}}">
+                                FDA Warnings
+                             </button>
+                            </p>
+                            <div class="collapse" id="collapseExample{{drug.id}}" >
+                              <div class="card card-body scroll">
+                                {{drug.warnings}}
+                              </div>
+                            </div>
+                        {% endif %}
+
+
+                        <p class="article-content"></p>
+
+                            <strong>Type: </strong> {{ drug.type }}&nbsp; &nbsp; &nbsp; &nbsp;
+                           <strong>Start date:</strong> {{ drug.startdate.strftime('%d-%m-%y') }} &nbsp; &nbsp; &nbsp; &nbsp;
+                            <strong>Pack size:</strong> {{ drug.packsize }} &nbsp; &nbsp; &nbsp; &nbsp;
+                           <strong> Dose: </strong>{{ drug.dose }} &nbsp; &nbsp; &nbsp; &nbsp;
+                            <strong>Times a day: </strong>{{ drug.timesaday }} &nbsp;
+                        </p>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">{{ percentage }}%</div>
+    <!--                         <div style="width: 6px; height: 20px; position: absolute; background: red; right: 40%;" title="Nadav">-->
+    <!--                        </div>-->
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-danger btn-sm ml-1" data-toggle="modal" data-target="#deleteModal{{drug.id}}">
+                            Delete
+                        </button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal{{drug.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModal{{drug.id}}Label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModal{{drug.id}}Label">Are you sure?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this drug?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <form action="{{ url_for('delete_drug', drug_id=drug.id ) }}" method="POST">
+                                        <input class="btn btn-primary btn-danger" type="submit" value="Delete">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            {% endif %}
+        {% endfor %}
+         </div>
+    {% endif %}
+{% endblock content %}

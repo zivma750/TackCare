@@ -1,0 +1,160 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Edit Activity</h1>
+        <div class="content-section">
+            <form method="post" action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <div class="form-group">
+                        {{ form.eldrly.label(class="form-control-label") }}
+                        {{ form.eldrly(class="form-control form-control-lg") }}
+                    </div>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Memory Game</th>
+                              <th scope="col">Bulk Game</th>
+                              <th scope="col">Quiz</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Sunday</th>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a1d1(class="check-btn")}}
+
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    {{ form.a2d1(class="check-btn")}}
+
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    {{ form.a3d1(class="check-btn")}}
+
+                                </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Monday</th>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a1d2(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a2d2(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a3d2(class="check-btn")}}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Tuesday</th>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a1d3(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a2d3(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a3d3(class="check-btn")}}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Wednesday</th>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a1d4(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a2d4(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a3d4(class="check-btn")}}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Thursday</th>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a1d5(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a2d5(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a3d5(class="check-btn")}}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Friday</th>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a1d6(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a2d6(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a3d6(class="check-btn")}}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Saturday</th>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a1d7(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a2d7(class="check-btn")}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    {{ form.a3d7(class="check-btn")}}
+                                </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </form>
+        </div>
+
+{% endblock content %}

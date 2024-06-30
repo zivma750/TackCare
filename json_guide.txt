@@ -1,0 +1,102 @@
+Server -> cilent 
+
+Login
+
+{
+  "type": "login",
+  "data": {
+		"username": "saba", 
+		"password": "123456"
+		}
+}
+
+{
+  "type": "notification",
+  "data": { "notification_id": "2",
+			"title": "2",
+			"content" :"text",
+			"date":"2025-12-01",
+			"time":"10-10",
+			"user_id":"1",
+			"elderly_user_id":"1",
+			"took":"false"
+			}
+}
+
+{
+  "type": "drugschedule",
+  "data": { "DrugSchedule_id": "1",
+			"takedate":"2025-12-01",
+			"taketime":"10-10",
+			"drug_id":"1",
+			"user_id":"1",
+			"elderly_user_id":"1",
+			"took":"false",
+			"drug_name":"advil",
+            "dose":"1",
+            "type":"pill"
+			}
+}
+
+.weekday()
+
+{
+  "type": "activitiy",
+  "data": { "activitiy_id": "1",
+			"day":"1",
+			"activity1":"true",
+			"activity2":"true",
+			"activity3":"false",
+			"user_id":"1",
+			"elderly_user_id":"3"
+			}
+}
+
+--------------------------------------------------------------------------------------
+cilent ->  Server
+
+{	
+	"type":"login_callback",
+	"data":{"user_id":"2",
+			"validpass":true,
+			"validuser":true}
+}
+
+
+
+{
+  "type": "notification_callback",
+  "data": { "notification_id": "1",
+			"title": "2",
+			"content" :"text",
+			"date":"2025-12-01",
+			"time":"10-10",
+			"user_id":"1",
+			"elderly_user_id":"1",
+			"took":"True"
+			}
+}
+
+{
+  "type": "drugschedule_callback",
+  "data": { "DrugSchedule_id": "1",
+			"takedate":"2025-12-01",
+			"taketime":"10-10",
+			"drug_id":"1",
+			"user_id":"1",
+			"elderly_user_id":"1",
+			"took":"True"
+			}
+}
+
+{
+  "type": "activitiy_callback",
+  "data": { "activitiy_id": "1",
+			"day":"1",
+			"activity1":"true",
+			"activity2":"true",
+			"activity3":"false",
+			"user_id":"1",
+			"elderly_user_id":"3"
+			}
+}

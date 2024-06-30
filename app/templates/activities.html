@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Activities Page</h1>
+    <div class="floating-container">
+        <a class="floating-button" href="{{ url_for('add_activity')}}">Edit</a>
+    </div>
+    {% for elderly_user_id in eldelys_dict.keys()%}
+      <h3>{{eldelys_dict[elderly_user_id]}}</h3>
+
+              <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Memory Game</th>
+                      <th scope="col">Bulk Game</th>
+                      <th scope="col">Quiz</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Sunday</th>
+
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d1'].activity1 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d1'].activity1 else 'X' }}</td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d1'].activity2 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d1'].activity2 else 'X' }}</td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d1'].activity3 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d1'].activity3 else 'X' }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Monday</th>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d2'].activity1 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d2'].activity1 else 'X' }} </td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d2'].activity2 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d2'].activity2 else 'X' }}  </td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d2'].activity3 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d2'].activity3 else 'X' }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Tuesday</th>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d3'].activity1 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d3'].activity2 else 'X' }}</td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d3'].activity2 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d3'].activity1 else 'X' }} </td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d3'].activity3 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d3'].activity3 else 'X' }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Wednesday</th>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d4'].activity1 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d4'].activity1 else 'X' }} </td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d4'].activity2 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d4'].activity2 else 'X' }}</td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d4'].activity3 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d4'].activity3 else 'X' }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Thursday</th>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d5'].activity1 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d5'].activity1 else 'X' }} </td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d5'].activity2 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d5'].activity2 else 'X' }}</td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d5'].activity3 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d5'].activity3 else 'X' }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Friday</th>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d6'].activity1 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d6'].activity1 else 'X' }} </td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d6'].activity2 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d6'].activity2 else 'X' }}</td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d6'].activity3 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d6'].activity3 else 'X' }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Saturday</th>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d7'].activity1 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d7'].activity1 else 'X' }} </td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d7'].activity2 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d7'].activity2 else 'X' }}</td>
+                      <td style="{{ 'color: green;font-weight: bold;' if eldely_activities[elderly_user_id]['d7'].activity3 else 'color: red;font-weight: bold;' }}">{{ 'V' if eldely_activities[elderly_user_id]['d7'].activity3 else 'X' }}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <hr/>
+
+
+
+    {% endfor %}
+{% endblock content %}
+

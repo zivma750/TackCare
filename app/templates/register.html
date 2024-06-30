@@ -1,0 +1,169 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="content-section"> 
+	<form method="post" action="">
+		{{ form.hidden_tag() }}
+		<fieldset class="form-group">
+			<legend class="border-bottom mb-4">Supporter-User Register</legend>
+			<div class="form-group required">
+				{{ form.username.label(class="control-label") }}
+				{% if form.username.errors %}
+					{{ form.username(class="form-control form-control-lg is-invalid")}}
+					<div class="is-invalid">
+						{% for error in form.username.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.username(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+			<div class="form-group  required">
+			{{ form.email.label(class="control-label") }}
+				{% if form.email.errors %}
+					{{ form.email(class="form-control form-control-lg is-invalid")}}
+					<div class="is-invalid">
+						{% for error in form.email.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.email(class="form-control form-control-lg") }}
+				{% endif %}
+			
+			</div>
+			<div class="form-group required">
+			{{ form.password.label(class="control-label") }}
+				{% if form.password.errors %}
+					{{ form.password(class="form-control form-control-lg is-invalid")}}
+					<div class="is-invalid">
+						{% for error in form.password.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.password(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+			<div class="form-group required">
+			{{ form.confirm_password.label(class="control-label") }}
+				{% if form.confirm_password.errors %}
+					{{ form.confirm_password(class="form-control form-control-lg is-invalid")}}
+					<div class="is-invalid">
+						{% for error in form.confirm_password.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.confirm_password(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+		</fieldset>
+		<fieldset class="form-group required">
+			<legend class="border-bottom mb-4"> Elderly-User Register</legend>
+		<div class="form-group">
+				{{ form.elderlyusername.label(class="control-label") }}
+				{% if form.elderlyusername.errors %}
+					{{ form.elderlyusername(class="form-control form-control-lg is-invalid")}}
+					<div class="is-invalid">
+						{% for error in form.elderlyusername.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.elderlyusername(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+			<div class="form-group required">
+			{{ form.elderlypassword.label(class="control-label") }}
+				{% if form.elderlypassword.errors %}
+					{{ form.elderlypassword(class="form-control form-control-lg is-invalid")}}
+					<div class="is-invalid">
+						{% for error in form.elderlypassword.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.elderlypassword(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+			<div class="form-group required">
+			{{ form.elderlyconfirm_password.label(class="control-label") }}
+				{% if form.elderlyconfirm_password.errors %}
+					{{ form.elderlyconfirm_password(class="form-control form-control-lg is-invalid")}}
+					<div class="is-invalid">
+						{% for error in form.elderlyconfirm_password.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.elderlyconfirm_password(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+		</fieldset>
+			<p>
+			  <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Elderly-User #2 Register - Optional</a>
+			</p>
+			<div class="row">
+			  <div class="col">
+				<div class="collapse multi-collapse" id="multiCollapseExample1">
+				  <div class="card card-body">
+					<fieldset class="form-group">
+			<legend class="border-bottom mb-4"> Elderly-User #2 Register - Optional</legend>
+		<div class="form-group">
+				{{ form.elderlyusername2.label(class="form-control-label") }}
+				{% if form.elderlyusername2.errors %}
+					{{ form.elderlyusername2(class="form-control form-control-lg is-invalid")}}
+					<div class="is-invalid">
+						{% for error in form.elderlyusername2.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.elderlyusername2(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+			<div class="form-group">
+			{{ form.elderlypassword2.label(class="form-control-label") }}
+				{% if form.elderlypassword2.errors %}
+					{{ form.elderlypassword2(class="form-control form-control-lg is-invalid")}}
+					<div class="is-invalid">
+						{% for error in form.elderlypassword2.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.elderlypassword2(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+			<div class="form-group">
+			{{ form.elderlyconfirm_password2.label(class="form-control-label") }}
+				{% if form.elderlyconfirm_password2.errors %}
+					{{ form.elderlyconfirm_password2(class="form-control form-control-lg is-invalid")}}
+					<div class="is-invalid">
+						{% for error in form.elderlyconfirm_password2.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.elderlyconfirm_password2(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+		</fieldset>
+				  </div>
+				</div>
+			  </div>
+			</div>
+
+
+		</fieldset>
+		<div class="form-group">
+			{{ form.submit(class="btn btn-outline-info") }}
+		</div>
+	</form>
+	<div class="border-top pt-3">
+		<small class="text-muted">
+		Already Have an Account? <a class="ml-2" href="{{ url_for('login')}}"> Sing In</a>
+		</small>
+	</div>
+{% endblock %}

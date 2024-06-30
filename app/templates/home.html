@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h2> TakeCare - User Panel </h2>
+  <br>
+  <h4>Notifications:</h4>
+  <div class="content-section">
+    {% if notifications.count() == 0  %}
+        <h5>No notifications found</h5>
+
+    {% else %}
+      {% set counter = namespace(count=0) %}
+      {% for notification in notifications %}
+        {% if not notification.took %}
+          {% set counter.count = counter.count + 1 %}
+            {% if counter.count <=2 %}
+              <article class="media content-section">
+                <div class="media-body">
+                       <span class="badge badge-pill badge-info">Active</span>
+                       <div class="article-title">
+                            <big><strong>User: </strong> {{ eldelys_dict[notification.elderly_user_id] }}</big>
+                        </div>
+                  <div class="article-metadata">
+                    <big class="text-muted"><strong>Date: </strong> {{ notification.date.strftime('%d-%m-%y') }}   <strong>Time: </strong> {{ notification.time }} </big>
+                  </div>
+                  <h2>{{ notification.title }}</h2>
+                  <p class="article-content">{{ notification.content }}</p>
+                </div>
+              </article>
+            {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    <a class="btn btn-dark btn-sm ml-1" href="{{url_for('notification')}}"> View All Notifications</a>
+    <a class="btn btn-primary btn-sm ml-1" href="{{url_for('add_notification')}}"> Add New Notification</a>
+  </div>
+
+  <h4>Drugs:</h4>
+  <div class="content-section">
+    {% if drugs.count() == 0  %}
+        <h5>No drugs found</h5>
+
+    {% else %}
+      {% set counter = namespace(count=0) %}
+      {% for drug in drugs %}
+        {% if not drug.finish %}
+          {% set counter.count = counter.count + 1 %}
+            {% if counter.count <=2 %}
+              <article class="media content-section">
+                <div class="media-body">
+                        <span class="badge badge-pill badge-info">Active</span>
+                        <div class="article-title">
+                            <big><strong>User: </strong> {{ eldelys_dict[drug.elderly_user_id] }}</big>
+                        </div>
+                  <div class="article-metadata">
+                    <big class="text-muted"><strong>Start Date: </strong> {{ drug.startdate.strftime('%d-%m-%y') }} </big>
+                  </div>
+                  <h2>{{ drug.name }}</h2>
+                    <p>
+                      <strong>Type: </strong> {{ drug.type }}&nbsp; &nbsp; &nbsp; &nbsp;
+                      <strong>Start date:</strong> {{ drug.startdate.strftime('%d-%m-%y') }} &nbsp; &nbsp; &nbsp; &nbsp;
+                      <strong>Pack size:</strong> {{ drug.packsize }} &nbsp; &nbsp; &nbsp; &nbsp;
+                      <strong> Dose: </strong>{{ drug.dose }} &nbsp; &nbsp; &nbsp; &nbsp;
+                      <strong>Times a day: </strong>{{ drug.timesaday }} &nbsp;
+                    </p>
+                </div>
+              </article>
+            {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    <a class="btn btn-dark btn-sm ml-1" href="{{url_for('drugs')}}"> View All Drugs</a>
+    <a class="btn btn-primary btn-sm ml-1" href="{{url_for('add_drug')}}"> Add New Drug</a>
+  </div>
+
+
+{% endblock content %}

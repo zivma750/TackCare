@@ -1,0 +1,54 @@
+Project- link - >   http:\\192.168.98.97:5000
+
+
+connect to server:
+
+1. download Putty
+2. enter
+2.1 ip - 192.168.98.97
+2.2 port 22
+
+3. user name : idobk
+4. password : guc&n9N7do
+
+
+
+transfer files:
+1. download Putty
+2. enter
+2.1 host - 192.116.98.97
+2.2 port 22
+3. user name : idobk
+4. password : guc&n9N7do
+
+
+all the app files should be in myflaskapp.
+
+
+Web server:
+Gunicorn command For running app.py in myflaskapp folder:
+
+gunicorn --bind 0.0.0.0:5000 app:app
+
+Make sure that in app.py you cahnge the:
+____________________________________
+if __name__ =='__main__':
+    app.run(debug=Ture)
+____________________________________
+	
+to->
+___________________________________	
+if __name__ =='__main__':
+    app.run(host='192.116.98.97',port=5000)
+____________________________________
+
+
+create db
+
+from app import app, db
+
+with app.app_context():
+    db.create_all()
+
+
+flask --app app.py run --debug
